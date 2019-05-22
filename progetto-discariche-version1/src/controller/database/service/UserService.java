@@ -14,16 +14,21 @@ public class UserService extends GenericService {
 	}
 
 	public void registerUser(User user) {
-		if (new Utility().isValidEmailAddress(user.getEmail())) {
+	//	{
 		
 			// VARI CONTROLLI SE CE NE SONO
 			// SE L'USER E' MANAGER METTO A NULL TUTTI I CAMPI CHE HANNO PHOTO E COSI VIA
+			
+			
+			if(user.getRole() == true) {
+				user.setExperience (null);
+				user.setPhoto(null);
+			}
 			UserDAO userDAO = new UserDAO(connection);
-			userDAO.add(user);			
-		
-		} else {
+			userDAO.add(user);	}		
+	//	} else {
+			 
 			// ALTRO ERRORE
-		}
+//		}
 		
 	}
-}

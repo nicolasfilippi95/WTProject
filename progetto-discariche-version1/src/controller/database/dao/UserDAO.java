@@ -52,8 +52,8 @@ public class UserDAO extends GenericDAO {
 			resultSet = preparedStatement.executeQuery();
 
 			if (resultSet.next()) {
-				user = new User(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"), 
-						resultSet.getString("password"), resultSet.getBoolean("role"), resultSet.getString("experience"), 
+				user = new User(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getString("email"), 
+						resultSet.getString("password"),resultSet.getBoolean("role"),resultSet.getString("experience"), 
 						resultSet.getString("photo"));
 			}
 		} catch (SQLException e) {
@@ -64,7 +64,6 @@ public class UserDAO extends GenericDAO {
 					resultSet.close();
 				if (preparedStatement != null) 
 					preparedStatement.close();
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -113,5 +112,4 @@ public class UserDAO extends GenericDAO {
 	public UserDAO(Connection connection) {
 		super(connection);
 	}
-
 }
