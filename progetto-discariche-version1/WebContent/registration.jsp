@@ -6,23 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration Page</title>
-<script  type="text/javascript">
-window.onload= function() {
-	var worker  = document.getElementById("manager_select");
-	var manager = document.getElementById("worker_select");
-	manager.onclick = function(){
-		document.getElementById("work_extra").hidden = false;
-	}
-	worker.onclick = function(){ 
-	document.getElementById("work_extra").hidden= true ;
-	}
-}
+<script type="text/javascript" src = "js/showAndHideFieldRegistration.js"></script>
 
-</script>
 
 </head>
 <body >
-<h1>welcome to this web application</h1>
+<h1>Welcome to this web application...</h1>
 <p>Effettua la registrazione :<p>
 <form method= "post" action = "Registration">
     <label for="name">Inserisci username:</label><br>
