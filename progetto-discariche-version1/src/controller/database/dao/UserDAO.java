@@ -71,7 +71,7 @@ public class UserDAO extends GenericDAO {
 		return user;
 	}
 
-	// LOGIN
+	// LOGIN with email and password 
 	public User findUserByEmailAndPassword(String email, String password) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;

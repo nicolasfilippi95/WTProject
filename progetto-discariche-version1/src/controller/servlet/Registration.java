@@ -25,7 +25,6 @@ public class Registration extends HttpServlet {
 		String role = request.getParameter("role");
 		
 		
-		
 		if(username == null || email == null || password == null || confirmPassword == null || role  == null
 				|| !confirmPassword.contentEquals(password)  || !role.contentEquals("confirmpassword") || 
 				(! role.contentEquals("worker")  && !role.contentEquals("manager") )||
@@ -42,16 +41,16 @@ public class Registration extends HttpServlet {
 		
 		if (userService.userExists(username, email )) {
 			userService.close();
-			response.sendRedirect(request.getContextPath() +"/registration.jsp");
+			response.sendRedirect(request.getContextPath() +"/registration");
 		} else {
 		boolean role_bool = true; 	 //manager 
 		
-		if(role ==" worker") {
+		if(role =="worker") {
 			role_bool =false;
 		}
 		
 			userService.registerUser(new User(0,username, email, password, role_bool, request.getParameter("experience"),request.getParameter("photo")));
-			response.sendRedirect(request.getContextPath() + "/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/login");
 	
 		}	
 		
