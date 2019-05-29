@@ -38,7 +38,7 @@ public class UserDAO extends GenericDAO {
 
 	}
 
-	// FIND NAME OR EMAIL TO REGISTER A NEW USER
+	// FIND NAME OR EMAIL TO REGISTER A NEW USER( check if they are already in DB) 
 	public User findUserByNameOrEmail(String name, String email) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -46,8 +46,8 @@ public class UserDAO extends GenericDAO {
 
 		try {
 			preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE email  = ? or name = ? ");
-			preparedStatement.setString(0, email);
-			preparedStatement.setString(1, name);
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, name);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -79,8 +79,8 @@ public class UserDAO extends GenericDAO {
 
 		try {
 			preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE email = ? and password = ? ");
-			preparedStatement.setString(0, email);
-			preparedStatement.setString(1, password);
+			preparedStatement.setString(1, email);
+			preparedStatement.setString(2, password);
 
 			resultSet = preparedStatement.executeQuery();
 
@@ -106,8 +106,28 @@ public class UserDAO extends GenericDAO {
 	}
 	
 
-// public void update(User user) {}
-	
+ public void update(User user) {
+	 PreparedStatement preparedStatement = null;
+	 try {
+		 preparedStatement = connection.prepareStatement("UPDATE user SET name = ?, email = ?, password = ?  WHERE id = ?");
+	 preparedStatement.setString(1, user.getName());
+	 preparedStatement.setString(2, user.getEmail());
+	 preparedStatement.setString(3, user.getPassword());
+	 preparedStatement.setInt(4, user.getId());
+	 preparedStatement.executeUpdate(); 
+	 
+	 }catch(SQLException e) {
+		 e.printStackTrace();
+	 }
+ finally {
+	 try {
+		 if(preparedStatement !=null) {
+			 preparedStatement.close();
+		 }}catch(SQLException e ) {
+		 e.printStackTrace();
+	 }
+ }
+ }
 	
 	public UserDAO(Connection connection) {
 		super(connection);

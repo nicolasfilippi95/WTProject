@@ -37,7 +37,7 @@
     logAbandoned="true"
     maxWaitMillis="30000"
     username="root" 
-    password="" 
+
     driverClassName="com.mysql.jdbc.Driver"
-    url="jdbc:mysql://localhost:3306/WTProjectDatabase"/>
+    url="jdbc:mysql://localhost:3306/wtprojectdb"/>
 </Context>

@@ -14,7 +14,7 @@ public abstract class GenericService {
 	
 	public GenericService() {
 		try {
-			dataSource = (DataSource) new InitialContext().lookup("java://com/env/jdbc/DataSource");
+			dataSource = (DataSource) new InitialContext().lookup("java:/comp/env/jdbc/DataSource");
 			connection = dataSource.getConnection();
 			connection.setAutoCommit(false);
 		} catch (SQLException | NamingException e) {

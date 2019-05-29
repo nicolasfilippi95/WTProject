@@ -9,7 +9,6 @@ public class Campaign {
 	
 
 	public Campaign(int id, int userId, String name, String customer, String status) {
-		super();
 		this.id = id;
 		this.userId = userId;
 		this.name = name;

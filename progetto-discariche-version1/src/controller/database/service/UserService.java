@@ -3,7 +3,6 @@ package controller.database.service;
 import controller.database.dao.UserDAO;
 import controller.database.service.generic.GenericService;
 import model.beans.User;
-import utilities.Utility;
 
 public class UserService extends GenericService {
 
@@ -28,6 +27,12 @@ public class UserService extends GenericService {
 		UserDAO userDao = new UserDAO(connection);
 		return userDao.findUserByEmailAndPassword(email, password);
 
+	}
+	
+	public void update(User user) {
+		UserDAO userDao = new UserDAO(connection);
+		userDao.update(user);
+		
 	}
 
 }

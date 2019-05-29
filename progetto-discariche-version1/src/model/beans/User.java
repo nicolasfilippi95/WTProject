@@ -11,7 +11,6 @@ public class User {
 	private String photo;
 	
 	public User(int id, String name, String email, String password, boolean role, String experience, String photo) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -29,8 +28,8 @@ public class User {
 		return name;
 	}
 
-	public void setName(String n ) {
-		this.name = n;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -66,7 +65,7 @@ public class User {
 	}
 
 	public String getPhoto() {
-		return photo ;
+		return photo;
 	}
 
 	public void setPhoto(String photo) {

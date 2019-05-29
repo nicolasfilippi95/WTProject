@@ -10,7 +10,6 @@ public class Image {
 	private int localityId;
 	
 	public Image(int id, String resolution, Date shooting_date, String origin, int localityId) {
-		super();
 		this.id = id;
 		this.resolution = resolution;
 		this.shooting_date = shooting_date;

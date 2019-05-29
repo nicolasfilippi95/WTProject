@@ -11,9 +11,7 @@ public class Note {
 	private int userId;
 	private int imageId;
 	
-	
 	public Note(int id, Date date, boolean validity, String reliability, String comment, int userId, int imageId) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.validity = validity;
