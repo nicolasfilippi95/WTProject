@@ -1,5 +1,10 @@
 package controller.database.service;
 
-public class CampaignService {
+import controller.database.service.generic.GenericService;
+
+public class CampaignService extends GenericService{
+
+
+
 
 }
