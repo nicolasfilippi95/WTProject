@@ -38,6 +38,6 @@
     <input type ="submit" value ="sign up" />
 
 </form>
-
+<a href="login">effettua il login</a>
 </body>
 </html>

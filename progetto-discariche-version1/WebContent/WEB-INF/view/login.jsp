@@ -15,5 +15,8 @@
 			placeholder="Enter Password" name="password" required />
 		<button type="submit">Login</button>
 	</form>
+	
+	<a href="registration">Non sei ancora registrato?</a>
+	
 </body>
 </html>

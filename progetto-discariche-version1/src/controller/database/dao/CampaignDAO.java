@@ -47,6 +47,7 @@ public class CampaignDAO extends GenericDAO{
 		}
 		return campaigns;
 	}
+	
 	//find all campaign available for worker with id
 	
 	public ArrayList<Campaign> findAllAvailableByWorker(int id){

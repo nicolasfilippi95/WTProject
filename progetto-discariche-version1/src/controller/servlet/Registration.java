@@ -37,7 +37,7 @@ public class Registration extends HttpServlet {
 		String role = request.getParameter("role");
 
 		if(username == null || email == null || password == null || confirmPassword == null || role  == null
-				|| !confirmPassword.contentEquals(password)  || !role.contentEquals("confirmpassword") || 
+				|| !confirmPassword.contentEquals(password)  || 
 				(! role.contentEquals("worker")  && !role.contentEquals("manager") )||
 				( !new Utility().isValidEmailAddress(email)) ){
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/registration.jsp").forward(request, response);
@@ -52,7 +52,7 @@ public class Registration extends HttpServlet {
 
 			user = new User(0, username, email, password, false, request.getParameter("experience"), request.getParameter("photo"));			
 
-			user.setRole(role == "worker");
+			user.setRole(role == "manager");// if role is manager role is setted to 1 else if is a manger set to 0
 
 			userService.registerUser(user);
 
