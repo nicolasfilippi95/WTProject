@@ -9,10 +9,10 @@
 <body>
 	<h1>Effettua il login:</h1>
 	<form method="POST" action="login">
-		<label for="email"><b>email</b></label> <input type="text"
-			placeholder="Enter email" name="email" required /> <label
-			for="password"><b>Password</b></label> <input type="password"
-			placeholder="Enter Password" name="password" required />
+		<label for="email"><b>email</b></label> 
+		<input type="text" placeholder="Enter email" name="email" required /> 
+		<label for="password"><b>Password</b></label>
+	    <input type="password" placeholder="Enter Password" name="password" required />
 		<button type="submit">Login</button>
 	</form>
 	

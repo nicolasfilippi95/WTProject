@@ -26,6 +26,20 @@
 
 		</table>
 
+
+		<p>Crea nuova campagna:</p>
+		<form action="POST" method="createCampaign"></form>
+		<label for="name">Inserisci il nome della campagna:</label>
+		<input type="text" placeholder="enter name" name="name" />
+		<label for="customer">Inserisci il cliente della campagna:</label>
+		<input type="text" placeholder="enter customer" name="customer">
+		<input type="submit" value="create campaign">
+
+
+
+
+		</form>
+
 	</c:if>
 	<c:if test="${sessionScope.User.role == false }">
 		<p>Campagne avviate e per cui non hai ancora optato:</p>
