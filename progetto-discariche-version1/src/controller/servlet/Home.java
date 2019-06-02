@@ -32,8 +32,15 @@ public class Home extends HttpServlet {
 		campaignService.close();
 		request.getServletContext().getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
 		
-		
-		
+		}
+		else {
+		// if user is a worker ( value 0/false)
+		ArrayList<Campaign> available = campaignService.findAllAvailableByWorker(user.getId());//campaign started and not chosen
+		ArrayList<Campaign> choosen = campaignService.findAllStartedAndChosenByWorker(user.getId());
+		campaignService.close();
+		request.setAttribute("CampaignAvailable", available);
+		request.setAttribute("CampaignChoosen", choosen);
+		request.getServletContext().getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
 		}
 		
 		

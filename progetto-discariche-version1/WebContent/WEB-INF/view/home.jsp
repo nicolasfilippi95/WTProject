@@ -8,25 +8,52 @@
 <title>Home</title>
 </head>
 <body>
-<a href ="logout">logout</a>
+	<a href="logout">logout</a>
 	<c:if test="${sessionScope.User.role == true}">
 		<p>Campagne:</p>
 		<table>
-		<c:forEach var="element" items="${requestScope.Campaign}">
-			
-			
-			<tr> 
-			<td><c:out value="${element.name}"/></td>
-			<td><c:out value="${element.customer}"/></td>
-			<td><c:out value="${element.status}"/></td>
-			</tr>
-			
-			</c:forEach>
-			
+			<c:forEach var="element" items="${requestScope.Campaign}">
 
-</table>
+
+				<tr>
+					<td><c:out value="${element.name}" /></td>
+					<td><c:out value="${element.customer}" /></td>
+					<td><c:out value="${element.status}" /></td>
+				</tr>
+
+			</c:forEach>
+
+
+		</table>
 
 	</c:if>
-<a href="profile">modifica dettagli del profilo</a>
+	<c:if test="${sessionScope.User.role == false }">
+		<p>Campagne avviate e per cui non hai ancora optato:</p>
+		<br>
+		<table>
+			<c:forEach var="element" items="${requestScope.CampaignAvailable}">
+				<tr>
+					<td><c:out value="${element.name}" /></td>
+					<td><c:out value="${element.customer}" /></td>
+					<td><c:out value="${element.status}" /></td>
+				</tr>
+
+			</c:forEach>
+		</table>
+		<p>Campagne avviate e per cui hai optato:</p>
+		<br>
+		<table>
+			<c:forEach var="element" items="${requestScope.CampaignChoosen}">
+				<tr>
+					<td><c:out value="${element.name}" /></td>
+					<td><c:out value="${element.customer}" /></td>
+					<td><c:out value="${element.status}" /></td>
+				</tr>
+
+			</c:forEach>
+		</table>
+
+	</c:if>
+	<a href="profile">modifica dettagli del profilo</a>
 </body>
 </html>
