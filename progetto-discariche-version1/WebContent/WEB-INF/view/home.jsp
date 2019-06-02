@@ -8,6 +8,7 @@
 <title>Home</title>
 </head>
 <body>
+<a href ="logout">logout</a>
 	<c:if test="${sessionScope.User.role == true}">
 		<p>Campagne:</p>
 		<table>

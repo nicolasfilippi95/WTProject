@@ -22,8 +22,18 @@ public class CampaignService extends GenericService{
 		campaignDAO.add(campaign);
 		
 	}
+	
+	public ArrayList<Campaign> findAllAvailableByWorker(int Id){
+		CampaignDAO campaignDAO = new CampaignDAO(connection);
+		ArrayList<Campaign> campaigns = campaignDAO.findAllAvailableByWorker(Id);
+		return campaigns;
+	}
 
-
+	public ArrayList<Campaign> findAllStartedAndChosenByWorker(int Id){
+		CampaignDAO campaignDAO = new CampaignDAO(connection);
+		ArrayList<Campaign> campaigns = campaignDAO.findAllStartedAndChosenByWorker(Id);
+		return campaigns;	
+	}
 
 
 }

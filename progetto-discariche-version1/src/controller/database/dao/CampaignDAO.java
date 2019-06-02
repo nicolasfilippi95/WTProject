@@ -48,7 +48,7 @@ public class CampaignDAO extends GenericDAO{
 		return campaigns;
 	}
 	
-	//find all campaign available for worker with id
+	//find all campaign available for worker with id and that have not been already chosen by worker 
 	
 	public ArrayList<Campaign> findAllAvailableByWorker(int id){
 		PreparedStatement preparedStatement = null;
@@ -80,6 +80,36 @@ public class CampaignDAO extends GenericDAO{
 		}
 	return campaigns;
 		}
+	
+	public ArrayList<Campaign> findAllStartedAndChosenByWorker(int id){
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		ArrayList<Campaign> campaigns = new ArrayList<>();
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE status= 'STARTED' AND id IN (SELECT campaignId FROM user_campaign WHERE userId =? ");
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Campaign campaign = new Campaign(resultSet.getInt("id"), resultSet.getInt("userId"), resultSet.getString("name"), resultSet.getString("customer"), resultSet.getString("status"));
+				campaigns.add(campaign);
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return campaigns;
+	}
 
 
 
