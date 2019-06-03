@@ -46,10 +46,10 @@ public class Profile extends HttpServlet {
 
 		//update in user the element that have been modified
 		if(name != "") {
-			user.setName("name");
+			user.setName(name);
 		}
 		if(email != "") {
-			user.setEmail("email");
+			user.setEmail(email);
 		}
 		if(password !="" && password.contentEquals("confirmPassword")) {
 			user.setPassword(password);
