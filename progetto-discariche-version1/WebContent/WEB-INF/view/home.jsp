@@ -12,7 +12,7 @@
 	<c:if test="${sessionScope.User.role == true}">
 		<p>Campagne:</p>
 		<table>
-			<c:forEach var="element" items="${requestScope.Campaign}">
+			<c:forEach var="element" items="${requestScope.ListCampaign}">
 
 
 				<tr>

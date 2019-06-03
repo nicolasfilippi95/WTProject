@@ -37,6 +37,9 @@ public class CreateCampaign extends HttpServlet {
 		campaignService.close();
 		
 		
+		response.sendRedirect(request.getContextPath() + "/campaignDetails");
+		
+		
 	}
 
 	

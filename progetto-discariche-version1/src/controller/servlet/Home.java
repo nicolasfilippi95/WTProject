@@ -28,7 +28,7 @@ public class Home extends HttpServlet {
 		CampaignService campaignService = new CampaignService();
 		if(user.getRole()== true) {   // means that it is a manager
 		ArrayList<Campaign> campaigns = campaignService.findAllCampaignbyManagerID(user.getId());
-		request.setAttribute("Campaign", campaigns);
+		request.setAttribute("ListCampaign", campaigns);
 		campaignService.close();
 		request.getServletContext().getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
 		
