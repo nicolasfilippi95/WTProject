@@ -23,7 +23,7 @@ public class CampaignDAO extends GenericDAO{
 		ResultSet resultSet = null;
 		ArrayList<Campaign> campaigns = new ArrayList<>();
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE userid = ?");
+			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE userId = ?");
 		preparedStatement.setInt(1, id);
 		resultSet =  preparedStatement.executeQuery();
 		while(resultSet.next()) {

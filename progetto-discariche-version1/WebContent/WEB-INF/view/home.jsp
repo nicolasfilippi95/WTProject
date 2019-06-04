@@ -10,7 +10,7 @@
 <body>
 	<a href="logout">logout</a>
 	<c:if test="${sessionScope.User.role == true}">
-		<p>Campagne:</p>
+		<p>Campagne:</p><br>
 		<table>
 			<c:forEach var="element" items="${requestScope.ListCampaign}">
 
@@ -27,7 +27,7 @@
 		</table>
 
 
-		<p>Crea nuova campagna:</p>
+		<br><p>Crea nuova campagna:</p><br>
 		<form action="POST" method="createCampaign"></form>
 		<label for="name">Inserisci il nome della campagna:</label>
 		<input type="text" placeholder="enter name" name="name" />
@@ -42,7 +42,7 @@
 
 	</c:if>
 	<c:if test="${sessionScope.User.role == false }">
-		<p>Campagne avviate e per cui non hai ancora optato:</p>
+		<br><p>Campagne avviate e per cui non hai ancora optato:</p><br>
 		<br>
 		<table>
 			<c:forEach var="element" items="${requestScope.CampaignAvailable}">

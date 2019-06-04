@@ -21,13 +21,10 @@
     <servlet-name>Home</servlet-name>
     <servlet-class>controller.servlet.Home</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>CreateCampaign</servlet-name>
     <servlet-class>controller.servlet.CreateCampaign</servlet-class>
   </servlet>
-
-
-
   <servlet-mapping>
     <servlet-name>Registration</servlet-name>
     <url-pattern>/registration</url-pattern>
@@ -49,7 +46,7 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>CreateCampaign</servlet-name>
     <url-pattern>/createCampaign</url-pattern>
   </servlet-mapping>
