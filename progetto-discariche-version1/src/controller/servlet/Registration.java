@@ -28,6 +28,7 @@ public class Registration extends HttpServlet {
 		User user = (User) session.getAttribute("User");
 		if (user != null) {
 			response.sendRedirect(request.getContextPath() + "/home");
+			return;
 		}
 		
 		String username = request.getParameter("name");
@@ -35,12 +36,13 @@ public class Registration extends HttpServlet {
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmpassword");
 		String role = request.getParameter("role");
-
+		
 		if(username == null || email == null || password == null || confirmPassword == null || role  == null
 				|| !confirmPassword.contentEquals(password)  || 
 				(! role.contentEquals("worker")  && !role.contentEquals("manager") )||
 				( !new Utility().isValidEmailAddress(email)) ){
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/registration.jsp").forward(request, response);
+		return;
 		}
 
 		UserService userService = new UserService();
@@ -48,11 +50,13 @@ public class Registration extends HttpServlet {
 		if (userService.userExists(username, email)) {
 			userService.close();
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/registration.jsp").forward(request, response);
+			return;
+		
 		} else {
 
 			user = new User(0, username, email, password, false, request.getParameter("experience"), request.getParameter("photo"));			
 
-			user.setRole(role == "manager");// if role is manager role is setted to 1 else if is a manger set to 0
+			user.setRole(role.contentEquals("manager"));// if role is manager role is setted to 1 else if is a manger set to 0
 
 			userService.registerUser(user);
 

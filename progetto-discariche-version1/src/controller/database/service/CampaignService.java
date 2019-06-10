@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.database.dao.CampaignDAO;
+import controller.database.dao.ImageDAO;
+import controller.database.dao.LocalityDAO;
+import controller.database.dao.NoteDAO;
 import controller.database.service.generic.GenericService;
 import model.beans.Campaign;
+import model.beans.Image;
+import model.beans.Locality;
+import model.beans.Note;
 
 
 
@@ -33,6 +39,23 @@ public class CampaignService extends GenericService{
 		CampaignDAO campaignDAO = new CampaignDAO(connection);
 		ArrayList<Campaign> campaigns = campaignDAO.findAllStartedAndChosenByWorker(Id);
 		return campaigns;	
+	}
+	
+	public ArrayList<Note> findAllNotesByImage(int imageId){
+		NoteDAO noteDAO =new NoteDAO(connection);
+		return noteDAO.findAllNotesByImage(imageId);
+	}
+	
+	public ArrayList<Locality> findAllLocalityByCampaign(int campaignId){
+		LocalityDAO localityDAO = new LocalityDAO(connection);
+		return  localityDAO.findAllLocalityByCampaign(campaignId);
+		
+	}
+	
+	
+	public ArrayList<Image> findAllImageByLocality(int localityId){
+		ImageDAO imageDAO = new ImageDAO(connection);
+		return imageDAO.findAllImageByLocality(localityId);
 	}
 
 

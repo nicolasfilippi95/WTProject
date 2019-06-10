@@ -25,7 +25,7 @@
     
     <p>se vuoi cambiare  il nome, la mail ,la password o entrambi inserisci il nuovo nome e/o nova mail e/o nuova password</p> 
     <p>aleno un valore deve essere modificato altrimenti si viene reindirizzati alla pagina di 
-    </div>
+    
 
 
 </body>

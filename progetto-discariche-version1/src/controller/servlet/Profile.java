@@ -17,7 +17,7 @@ import utilities.Utility;
 public class Profile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//get data from request
 		String name = request.getParameter("name");
@@ -41,7 +41,7 @@ public class Profile extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("User");
-		session.removeAttribute("User");
+	    session.removeAttribute("User");
 
 
 		//update in user the element that have been modified
@@ -66,9 +66,9 @@ public class Profile extends HttpServlet {
 	}
 
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doPost(request, response);
 	}
 
 }

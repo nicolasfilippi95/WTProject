@@ -16,11 +16,12 @@ public class UserService extends GenericService {
 
 
 		if(user.getRole() == true) {
-			user.setExperience (null);
+			user.setExperience(null);
 			user.setPhoto(null);
 		}
 		UserDAO userDAO = new UserDAO(connection);
 		userDAO.add(user);
+		commit();
 	}
 
 	public User login(String email, String password) {
@@ -32,6 +33,7 @@ public class UserService extends GenericService {
 	public void update(User user) {
 		UserDAO userDao = new UserDAO(connection);
 		userDao.update(user);
+		commit();
 		
 	}
 

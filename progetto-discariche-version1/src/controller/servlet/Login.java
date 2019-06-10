@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
 		User user = (User) session.getAttribute("User");
 		if (user != null) {
 			response.sendRedirect(request.getContextPath() + "/home");
+			return;
 		}
 
 		String email = request.getParameter("email");
@@ -38,6 +39,7 @@ public class Login extends HttpServlet {
 		// check if data are correct
 		if (email == null || password == null || email.contentEquals("") || password.contentEquals("")) {			
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+		return;
 		}
 
 		// search user with that email and password
@@ -48,6 +50,7 @@ public class Login extends HttpServlet {
 		// if return null user is not in database
 		if (user == null) {
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+			return;
 		}
 		// else create session for that user and go to home
 		else {

@@ -15,7 +15,7 @@ public class UserDAO extends GenericDAO {
 		PreparedStatement preparedStatement = null;
 		try {
 
-			preparedStatement = connection.prepareStatement("INSERT INTO user(name, email , password , role, experience , photo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			preparedStatement = connection.prepareStatement("INSERT INTO user(name, email , password , role, experience , photo) VALUES ( ?, ?, ?, ?, ?, ?)");
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setString(3, user.getPassword());
@@ -114,7 +114,7 @@ public class UserDAO extends GenericDAO {
 	 preparedStatement.setString(2, user.getEmail());
 	 preparedStatement.setString(3, user.getPassword());
 	 preparedStatement.setInt(4, user.getId());
-	 preparedStatement.executeUpdate(); 
+	 preparedStatement.executeUpdate();
 	 
 	 }catch(SQLException e) {
 		 e.printStackTrace();

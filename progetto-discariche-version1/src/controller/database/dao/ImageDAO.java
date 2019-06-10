@@ -43,7 +43,15 @@ public class ImageDAO extends GenericDAO{
 		return images;
 		
 	}
-
+	
+/*	public void add(Image image) {
+		PreparedStatement preparedStatement = null;
+		try {
+				preparedStatement =connection.prepareStatement("INSERT into image")
+		}
+	}
+*/	
+	
 	public ImageDAO(Connection connection) {
 		super(connection);
 	
