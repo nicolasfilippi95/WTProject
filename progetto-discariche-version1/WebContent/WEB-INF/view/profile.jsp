@@ -8,7 +8,7 @@
 
 <body>
 
-	<form method="POST" action="profile">
+	<form method="POST" action="modifyProfile">
 		Informazioni di:
 		<c:out value="${sessionScope.User.name}" />
 		<br> Email:

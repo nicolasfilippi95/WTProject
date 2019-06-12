@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.database.service.UserService;
 import model.beans.User;
+import utilities.Utility;
 
 public class Login extends HttpServlet {
 
@@ -44,7 +45,7 @@ public class Login extends HttpServlet {
 
 		// search user with that email and password
 		UserService userService = new UserService();
-		user = userService.login(email, password);
+		user = userService.login(email,new Utility().convertToMD5(password));
 		userService.close();
 
 		// if return null user is not in database

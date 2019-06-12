@@ -2,16 +2,16 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>progetto-discariche-version1</display-name>
   <servlet>
-    <servlet-name>Registration</servlet-name>
-    <servlet-class>controller.servlet.Registration</servlet-class>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>controller.servlet.Register</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>controller.servlet.Login</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Profile</servlet-name>
-    <servlet-class>controller.servlet.Profile</servlet-class>
+    <servlet-name>ModifyProfile</servlet-name>
+    <servlet-class>controller.servlet.ModifyProfile</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Logout</servlet-name>
@@ -26,12 +26,12 @@
     <servlet-class>controller.servlet.CreateCampaign</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Registration</servlet-name>
-    <url-pattern>/registration</url-pattern>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/register</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Profile</servlet-name>
-    <url-pattern>/profile</url-pattern>
+    <servlet-name>ModifyProfile</servlet-name>
+    <url-pattern>/modifyProfile</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>

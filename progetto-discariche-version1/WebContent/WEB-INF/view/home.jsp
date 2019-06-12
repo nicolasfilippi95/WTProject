@@ -68,6 +68,6 @@
 		</table>
 
 	</c:if>
-	<a href="profile">modifica dettagli del profilo</a>
+	<br><a href="modifyProfile">modifica dettagli del profilo</a>
 </body>
 </html>

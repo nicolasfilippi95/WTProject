@@ -13,7 +13,7 @@
 <body >
 <h1>Welcome to this web application...</h1>
 <p>Effettua la registrazione :<p>
-<form method= "post" action = "registration">
+<form method= "post" action = "register">
     <label for="name">Inserisci username:</label><br>
     <input type="text" placeholder ="enter name" name ="name" REQUIRED><br>
     <label for ="email">Inserisci email valida:</label><br>

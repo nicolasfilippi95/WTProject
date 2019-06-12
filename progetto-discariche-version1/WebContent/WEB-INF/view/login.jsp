@@ -16,7 +16,7 @@
 		<button type="submit">Login</button>
 	</form>
 	
-	<a href="registration">Non sei ancora registrato?</a>
+	<a href="register">Non sei ancora registrato?</a>
 	
 </body>
 </html>
