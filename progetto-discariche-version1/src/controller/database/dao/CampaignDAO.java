@@ -6,15 +6,45 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+import com.mysql.jdbc.Statement;
 
 import controller.database.dao.generic.GenericDAO;
 import model.beans.Campaign;
+
 
 public class CampaignDAO extends GenericDAO{
 	
 	public CampaignDAO(Connection connection) {
 		super(connection);
+	}
+	
+	
+	public Campaign findCampaignByID(int id) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Campaign campaign = null;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE id = ?");
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				campaign = new Campaign(resultSet.getInt("id"),resultSet.getInt("userId"),resultSet.getString("name") , resultSet.getString("customer"), resultSet.getString("status"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return campaign;
 	}
 	
 	// find all campaign by manager
@@ -27,7 +57,7 @@ public class CampaignDAO extends GenericDAO{
 		preparedStatement.setInt(1, id);
 		resultSet =  preparedStatement.executeQuery();
 		while(resultSet.next()) {
-			Campaign campaign = new Campaign(resultSet.getInt("id"), resultSet.getInt("managerId"), resultSet.getString("name"), resultSet.getString("customer"), resultSet.getString("status"));
+			Campaign campaign = new Campaign(resultSet.getInt("id"), resultSet.getInt("userId"), resultSet.getString("name"), resultSet.getString("customer"), resultSet.getString("status"));
 		campaigns.add(campaign);  
 		}
 		}catch(SQLException e) {
@@ -86,7 +116,7 @@ public class CampaignDAO extends GenericDAO{
 		ResultSet resultSet = null;
 		ArrayList<Campaign> campaigns = new ArrayList<>();
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE status= 'STARTED' AND id IN (SELECT campaignId FROM user_campaign WHERE userId =? ");
+			preparedStatement = connection.prepareStatement("SELECT * FROM campaign WHERE status= 'STARTED' AND id IN (SELECT campaignId FROM user_campaign WHERE userId =?) ");
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -114,15 +144,19 @@ public class CampaignDAO extends GenericDAO{
 
 
 
-public void add(Campaign campaign ) {
+public Campaign add(Campaign campaign ) {
 	PreparedStatement preparedStatement = null;
 	try {
-		preparedStatement = connection.prepareStatement("INSERT INTO campaign(userId, name, customer, status) VALUES (?,?,?,?)");
+		preparedStatement = connection.prepareStatement("INSERT INTO campaign(userId, name, customer, status) VALUES (?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 		preparedStatement.setInt(1, campaign.getUserId());
 		preparedStatement.setString(2, campaign.getName());
 		preparedStatement.setString(3, campaign.getCustomer());
 		preparedStatement.setString(4, campaign.getStatus());
 		preparedStatement.executeUpdate();
+		ResultSet  idGen = preparedStatement.getGeneratedKeys();
+		if(idGen.next()) {
+			campaign.setId(idGen.getInt(1));
+		}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -134,6 +168,7 @@ public void add(Campaign campaign ) {
 				}
 			}
 		}
+	return campaign;
 	
 }
 }

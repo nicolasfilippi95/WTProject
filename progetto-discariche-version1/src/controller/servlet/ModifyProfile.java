@@ -67,7 +67,7 @@ public class ModifyProfile extends HttpServlet {
 
 		//put in session
 		session.setAttribute("User", user);
-		response.sendRedirect(request.getContextPath() + "/home");
+		response.sendRedirect(request.getContextPath() + "/showHome");
 		return;
 		
 	}

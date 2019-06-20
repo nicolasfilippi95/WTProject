@@ -10,6 +10,35 @@ import controller.database.dao.generic.GenericDAO;
 import model.beans.Locality;
 
 public class LocalityDAO extends GenericDAO {
+	public Locality findLocalityById(int id) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Locality locality = null;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM locality WHERE id = ?");
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				locality = new Locality(resultSet.getInt("id"), resultSet.getDouble("latitude"), resultSet.getDouble("longitude"), resultSet.getString("name"), resultSet.getString("town"), resultSet.getString("region"), resultSet.getInt("campaignId"));
+				
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return locality;
+	}
 
 	public ArrayList<Locality> findAllLocalityByCampaign(int campaignId){
 		PreparedStatement preparedStatement =null;

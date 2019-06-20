@@ -1,15 +1,17 @@
 package model.beans;
 
+import java.sql.Blob;
 import java.sql.Date;
 
 public class Image {
 	private int id;
+	private String picture;
 	private String resolution;
 	private Date shooting_date;
 	private String origin;
 	private int localityId;
 	
-	public Image(int id, String resolution, Date shooting_date, String origin, int localityId) {
+	public Image(int id,String picture,  String resolution, Date shooting_date, String origin, int localityId) {
 		this.id = id;
 		this.resolution = resolution;
 		this.shooting_date = shooting_date;
@@ -55,6 +57,14 @@ public class Image {
 
 	public void setLocalityId(int localityId) {
 		this.localityId = localityId;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 }

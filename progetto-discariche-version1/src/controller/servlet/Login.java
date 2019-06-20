@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("User");
 		if (user != null) {
-			response.sendRedirect(request.getContextPath() + "/home");
+			response.sendRedirect(request.getContextPath() + "/showHome");
 			return;
 		}
 
@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 			session = request.getSession(); // will return current session. If current session does not exist, then it
 			                                // will create a new session.
 			session.setAttribute("User", user);
-			response.sendRedirect(request.getContextPath() + "/home");
+			response.sendRedirect(request.getContextPath() + "/showHome");
 		}
 	}
 }

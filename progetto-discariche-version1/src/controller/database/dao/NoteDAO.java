@@ -8,9 +8,42 @@ import java.util.ArrayList;
 
 import controller.database.dao.generic.GenericDAO;
 import model.beans.Image;
+import model.beans.Locality;
 import model.beans.Note;
 
 public class NoteDAO extends GenericDAO {
+	
+	
+		public Note findNoteById(int id) {
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			Note note = null;
+			try {
+				preparedStatement = connection.prepareStatement("SELECT * FROM note WHERE id = ?");
+				preparedStatement.setInt(1, id);
+				resultSet = preparedStatement.executeQuery();
+				if (resultSet.next()) {
+					note = new Note(resultSet.getInt("id"), resultSet.getDate("date"), resultSet.getBoolean("validity"), resultSet.getString("reliability"), resultSet.getString("comment"), resultSet.getInt("userId"), resultSet.getInt("imageId"));
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (resultSet != null) {
+						resultSet.close();
+					}
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return note;
+		}
+	
+	
 	
 	
 	public ArrayList<Note> findAllNotesByImage(int imageId){

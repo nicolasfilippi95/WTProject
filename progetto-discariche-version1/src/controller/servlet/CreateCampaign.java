@@ -26,24 +26,26 @@ public class CreateCampaign extends HttpServlet {
 		String name = request.getParameter("name");
 		String customer = request.getParameter("customer");
 		
+		
 		//if there is error return to home 
-		if(name==null || customer==null || name.contentEquals("") || name.contentEquals("")) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/view/home.jsp").forward(request, response);
+		if(user.getRole()== false || name==null || customer==null || name.contentEquals("") || customer.contentEquals("")) {
+	    response.sendRedirect(request.getContextPath() + "/showHome");
+		return;
 		}
 		
 		//aggiungi nuova campagna
 		CampaignService campaignService =new CampaignService();
-		campaignService.add(new Campaign(0, user.getId(), name, customer, "CREATED"));
+		Campaign c= new Campaign(0, user.getId() , name, customer, "CREATED");
+		c = campaignService.add(c);
+		System.out.println(c.getId());
 		campaignService.close();
-		
-		
-		response.sendRedirect(request.getContextPath() + "/campaignDetails");
-		
+		response.sendRedirect(request.getContextPath() + "/showDetailsCampaign?campaignid="+c.getId());
+		return;
 		
 	}
 
 	
-	@Override
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

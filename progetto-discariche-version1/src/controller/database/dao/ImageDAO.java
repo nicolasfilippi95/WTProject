@@ -22,8 +22,8 @@ public class ImageDAO extends GenericDAO{
 		preparedStatement.setInt(1, localityId);
 		resultSet =  preparedStatement.executeQuery();
 		while(resultSet.next()) {
-			Image image = new Image(resultSet.getInt("id"), resultSet.getString("resolution"), resultSet.getDate("shooting_date"), resultSet.getString("origin"), resultSet.getInt("localityId"));
-		images.add(image);
+			Image image = new Image(resultSet.getInt("id"),resultSet.getString("picture"), resultSet.getString("resolution"), resultSet.getDate("shooting_date"), resultSet.getString("origin"), resultSet.getInt("localityId"));
+			images.add(image);
 		}
 		}catch(SQLException e) {
 			e.printStackTrace();

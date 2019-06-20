@@ -29,5 +29,15 @@ public class Utility {
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
 	}
+	
+	public Integer convertToInteger(String number) {
+		Integer n;
+		try {
+			n = Integer.valueOf(number);
+		} catch (NumberFormatException e) {
+			n = null;
+		}
+		return n;
+	}
 
 }

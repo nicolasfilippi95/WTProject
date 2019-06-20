@@ -23,11 +23,14 @@ public class CampaignService extends GenericService{
 		return campaignDAO.findCampaignByManager(Id);
 	}
 
-	public void add(Campaign campaign) {
+	public Campaign add(Campaign campaign) {
 		CampaignDAO campaignDAO = new CampaignDAO(connection);
-		campaignDAO.add(campaign);
+		 campaign = campaignDAO.add(campaign);
+		commit();
+		return campaign;
 		
 	}
+	
 	
 	public ArrayList<Campaign> findAllAvailableByWorker(int Id){
 		CampaignDAO campaignDAO = new CampaignDAO(connection);
@@ -57,6 +60,24 @@ public class CampaignService extends GenericService{
 		ImageDAO imageDAO = new ImageDAO(connection);
 		return imageDAO.findAllImageByLocality(localityId);
 	}
+	
+	public Campaign findcampaignById(int id) {
+		CampaignDAO campaignDAO =new CampaignDAO(connection);
+		return campaignDAO.findCampaignByID(id);
+	}
+	
+	public Locality findLocalityById(int id) {
+		LocalityDAO localityDAO = new LocalityDAO(connection);
+		return localityDAO.findLocalityById(id);
+		
+	}
+	
+	public Note findNoteById(int imageId) {
+		NoteDAO noteDAO = new NoteDAO(connection);
+		return noteDAO. findNoteById(imageId);
+		}
+	
+
 
 
 }
