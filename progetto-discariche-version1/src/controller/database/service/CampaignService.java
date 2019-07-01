@@ -72,6 +72,27 @@ public class CampaignService extends GenericService{
 		
 	}
 	
+	public Locality findLocalityByName(String name) {
+		LocalityDAO localityDAO = new LocalityDAO(connection);
+		return localityDAO.findLocalityByName(name);
+		
+	}
+	
+	public Locality addLocality(Locality local) {
+		LocalityDAO localityDAO = new LocalityDAO(connection);
+		local = localityDAO.addLocality(local);
+		commit();
+		return local; 
+		
+	}
+	public void addImage(Image image) {
+		ImageDAO ImageDAO = new ImageDAO(connection);
+		ImageDAO.add(url, resolution, shooting_date, origin, localityId);
+		commit();
+		return local; 
+		
+	}
+	
 	public Note findNoteById(int imageId) {
 		NoteDAO noteDAO = new NoteDAO(connection);
 		return noteDAO. findNoteById(imageId);

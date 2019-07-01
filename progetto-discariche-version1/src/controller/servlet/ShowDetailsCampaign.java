@@ -33,11 +33,10 @@ public class ShowDetailsCampaign extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/showHome");
 			return;
 		}
-		//else search campaign with that id  ad if campaign exist redirect to detail page
+		//else search campaign with that id  ad if campaign exist redirect to det2 ail page
 		CampaignService campaignService = new CampaignService();
 		Campaign campaign = campaignService.findcampaignById(campaignId);
 		ArrayList<Locality> locality = campaignService.findAllLocalityByCampaign(campaignId);
-
 
 
 		if(campaign != null && campaign.getUserId() == user.getId() ) {

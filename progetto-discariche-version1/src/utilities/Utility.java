@@ -2,10 +2,19 @@ package utilities;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utility {
+	public java.sql.Date convertToSqlDate(String date) {
+		try {
+			return new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(date).getTime());
+		} catch (ParseException e) {
+			return null;
+		}
+	}
 	
 	public String convertToMD5(String message) {
 		try {
@@ -34,6 +43,15 @@ public class Utility {
 		Integer n;
 		try {
 			n = Integer.valueOf(number);
+		} catch (NumberFormatException e) {
+			n = null;
+		}
+		return n;
+	}
+	public Double convertToDouble(String number) {
+		Double n;
+		try {
+			n = Double.valueOf(number);
 		} catch (NumberFormatException e) {
 			n = null;
 		}
