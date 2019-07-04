@@ -46,20 +46,16 @@ public class ImageDAO extends GenericDAO{
 		return images;
 		
 	}
-		public void add(String url ,String resolution, Date shooting_date, String origin, int localityId) throws FileNotFoundException {
+		public void add(Image image) {
 		PreparedStatement preparedStatement = null;
-         FileInputStream fs = null;
 
 		try {
-			File f = new  File(url);
-			fs = new FileInputStream(f);
-			
-			preparedStatement =connection.prepareStatement("INSERT into image(picture, resolution, shooting_date,origin, localityId ");
-			preparedStatement.setBinaryStream(1, fs, (int)f.length());
-			preparedStatement.setString(2, resolution);
-			preparedStatement.setDate(3, shooting_date);
-			preparedStatement.setInt(4, localityId);
-			preparedStatement.executeUpdate();
+			preparedStatement=connection.prepareStatement("INSERT into image(picture, resolution, shooting_date,origin, localityId ");
+			preparedStatement.setString(1,image.getPicture());
+			preparedStatement.setString(2,image.getResolution());
+			preparedStatement.setDate(3,image.getShooting_date());
+			preparedStatement.setString(4,image.getOrigin());
+			preparedStatement.setInt(5,image.getLocalityId());
 			System.out.println("imaged stored successfully");
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,8 +71,7 @@ public class ImageDAO extends GenericDAO{
 			
 		} 
 	}
-	
-	
+		
 	public ImageDAO(Connection connection) {
 		super(connection);
 	

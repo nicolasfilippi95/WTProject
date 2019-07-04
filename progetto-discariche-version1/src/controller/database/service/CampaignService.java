@@ -87,9 +87,9 @@ public class CampaignService extends GenericService{
 	}
 	public void addImage(Image image) {
 		ImageDAO ImageDAO = new ImageDAO(connection);
-		ImageDAO.add(url, resolution, shooting_date, origin, localityId);
+		ImageDAO.add(image);
 		commit();
-		return local; 
+		
 		
 	}
 	

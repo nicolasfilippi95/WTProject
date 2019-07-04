@@ -59,7 +59,7 @@
 				</c:forEach>
 			</c:if>
 			
-			<form method="post" action="createLocalityAndImage?campaignid=<c:out value="${Campaign.id}"/>"  id="wiz">
+			<form method="post" enctype="multipart/form-data" action="createLocalityAndImage?campaignid=<c:out value="${Campaign.id}"/>"  id="wiz" >
 			
 				
 				<h1>Inserimento Nuove Località e nuove immagini:</h1>
@@ -91,13 +91,13 @@
 				<div class="tab">
 
 					<p>carica immagine:</p>
-					<input type="file" name="myImage"
-						accept="image/x-png,image/gif,image/jpeg" />
+					<input type="file" name="aFile"
+						accept="image/x-png,image/gif,image/jpeg,image/jpg" />
 				</div>
 
 				<div class="tab">
 					<p>inserisci i dati dell' immagine</p>
-					inserisci provenienza: <input type="text" name="origin" />
+					inserisci provenienza: <input type ="text" name="origin" />
 					inserisci data recupero:<input type="text" name="shooting_date" />
 					inserisci risoluzione:<input type="text" name="resolution" />
 				</div>
