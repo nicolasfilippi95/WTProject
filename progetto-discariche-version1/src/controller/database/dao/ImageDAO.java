@@ -50,12 +50,13 @@ public class ImageDAO extends GenericDAO{
 		PreparedStatement preparedStatement = null;
 
 		try {
-			preparedStatement=connection.prepareStatement("INSERT into image(picture, resolution, shooting_date,origin, localityId ");
+			preparedStatement=connection.prepareStatement("INSERT INTO image(picture, resolution,shooting_date, origin, localityId ) VALUES (  ?, ?, ?, ?, ?)");
 			preparedStatement.setString(1,image.getPicture());
 			preparedStatement.setString(2,image.getResolution());
 			preparedStatement.setDate(3,image.getShooting_date());
 			preparedStatement.setString(4,image.getOrigin());
 			preparedStatement.setInt(5,image.getLocalityId());
+			preparedStatement.execute();
 			System.out.println("imaged stored successfully");
 		}catch(SQLException e) {
 			e.printStackTrace();

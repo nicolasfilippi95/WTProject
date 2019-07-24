@@ -59,8 +59,8 @@
 				</c:forEach>
 			</c:if>
 			
-			<form method="post" enctype="multipart/form-data" action="createLocalityAndImage?campaignid=<c:out value="${Campaign.id}"/>"  id="wiz" >
-			
+			<form method="post" enctype="multipart/form-data" action="createLocalityAndImage"  id="wiz" >
+			<input type="hidden" name="campaignid" value= <c:out value="${Campaign.id}"/> />
 				
 				<h1>Inserimento Nuove Località e nuove immagini:</h1>
 				<div class="tab">
