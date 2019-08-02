@@ -29,10 +29,11 @@
     <servlet-name>ShowDetailsCampaign</servlet-name>
     <servlet-class>controller.servlet.ShowDetailsCampaign</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>CreateLocalityAndImage</servlet-name>
     <servlet-class>controller.servlet.CreateLocalityAndImage</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/register</url-pattern>
@@ -66,6 +67,7 @@
     <servlet-name>CreateLocalityAndImage</servlet-name>
     <url-pattern>/createLocalityAndImage</url-pattern>
   </servlet-mapping>
+
   <resource-ref>
     <description>DB Connection</description>
     <res-ref-name>jdbc/DataSource</res-ref-name>

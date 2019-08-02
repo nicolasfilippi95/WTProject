@@ -72,9 +72,9 @@ public class CampaignService extends GenericService{
 		
 	}
 	
-	public Locality findLocalityByName(String name) {
+	public Locality findLocalityByNameTownRegion(String name,String town,String region) {
 		LocalityDAO localityDAO = new LocalityDAO(connection);
-		return localityDAO.findLocalityByName(name);
+		return localityDAO.findLocalityByNameTownRegion(name, town , region);
 		
 	}
 	
@@ -86,11 +86,16 @@ public class CampaignService extends GenericService{
 		
 	}
 	public void addImage(Image image) {
-		ImageDAO ImageDAO = new ImageDAO(connection);
-		ImageDAO.add(image);
+		ImageDAO imageDAO = new ImageDAO(connection);
+		imageDAO.add(image);
 		commit();
 		
 		
+	}
+	
+	public int countImageByLocality(int locId) {
+		ImageDAO imageDAO = new ImageDAO(connection);
+		return imageDAO.countImageByLocality(locId);
 	}
 	
 	public Note findNoteById(int imageId) {

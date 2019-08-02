@@ -54,7 +54,7 @@ public class ShowDetailsCampaign extends HttpServlet {
 			campaignService.close();
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);
 			return;
-		}
+		}  
 
 		response.sendRedirect(request.getContextPath() + "/showHome");
 		return;

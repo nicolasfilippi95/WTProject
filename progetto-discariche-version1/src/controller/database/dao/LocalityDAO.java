@@ -76,13 +76,15 @@ public class LocalityDAO extends GenericDAO {
 	}
 	
 	
-	public Locality findLocalityByName(String name) {
+	public Locality findLocalityByNameTownRegion(String name,String town, String region) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		Locality locality = null;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM locality WHERE name = ?");
+			preparedStatement = connection.prepareStatement("SELECT * FROM locality WHERE name=? AND town=? AND  region=?");
 			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, town);
+			preparedStatement.setString(3, region);
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 				locality = new Locality(resultSet.getInt("id"), resultSet.getDouble("latitude"), resultSet.getDouble("longitude"), resultSet.getString("name"), resultSet.getString("town"), resultSet.getString("region"), resultSet.getInt("campaignId"));

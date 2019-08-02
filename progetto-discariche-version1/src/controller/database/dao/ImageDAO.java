@@ -46,6 +46,38 @@ public class ImageDAO extends GenericDAO{
 		return images;
 		
 	}
+	
+	
+	
+	public int countImageByLocality(int localityId) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null; 
+		int count =0;
+		try {
+			preparedStatement =connection.prepareStatement("SELECT COUNT(*) AS tot FROM image WHERE localityId=?");
+			preparedStatement.setInt(1, localityId);
+			resultSet =preparedStatement.executeQuery();
+			while(resultSet.next()) {
+			count = resultSet.getInt("tot");
+			}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if (resultSet != null) {
+						resultSet.close();
+					}
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		return count;
+		
+	}
 		public void add(Image image) {
 		PreparedStatement preparedStatement = null;
 

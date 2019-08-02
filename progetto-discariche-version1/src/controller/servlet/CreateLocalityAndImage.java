@@ -42,10 +42,9 @@ import utilities.Utility;
 import javax.servlet.http.Part;
 
 
-
+@MultipartConfig
 public class CreateLocalityAndImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String SAVE_DIR="images";
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,6 +52,7 @@ public class CreateLocalityAndImage extends HttpServlet {
 		User user = (User) session.getAttribute("User");
 
 		//get data from request
+
 		String locality = request.getParameter("localityWithSelect");
 		String latitude = request.getParameter("latitude");
 		String longitude = request.getParameter("longitude");
@@ -63,7 +63,7 @@ public class CreateLocalityAndImage extends HttpServlet {
 		String shooting_date = request.getParameter("shooting_date");
 		String resolution = request.getParameter("resolution");
 		Utility u = new Utility();
-		int localityId = u.convertToInteger(locality);
+		int number =1;
 
 		String campaign =request.getParameter("campaignid");
 		int c = Integer.parseInt(campaign);
@@ -72,13 +72,14 @@ public class CreateLocalityAndImage extends HttpServlet {
 
 
 		if(!locality.equals("new") && (!(latitude.equals("")|| latitude ==null)  || !(longitude.equals("") || longitude== null)  || !(name.equals("") || name ==null ) || !(town.equals("") || town == null)   || !(region.equals("") || region  == null) )) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() +"/showDetailsCampaign?campaignid=" + c);
 			System.out.println("E' stata selezionata località preesistente e poi sono stati inseriti dati nella form");
 			return;
 		}
+
 		CampaignService campaignService = new CampaignService();
-		if(locality.equals("new") && (campaignService.findLocalityByName(name)!= null || latitude.equals("") || longitude.equals("") || name.equals("") || town.equals("")  || region.equals("") || latitude == null || longitude == null || name == null || town == null  || region == null  ) ) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);
+		if(locality.equals("new") && ((campaignService.findLocalityByNameTownRegion(name,town,region))!= null || latitude.equals("") || longitude.equals("") || name.equals("") || town.equals("")  || region.equals("") || latitude == null || longitude == null || name == null || town == null  || region == null  ) ) {
+			response.sendRedirect(request.getContextPath() +"/showDetailsCampaign?campaignid=" + c);
 			System.out.println("E' stata selezionata località nuova e non è stato inserito uno delle nuove info nuova localita'");
 			campaignService.close();
 			return;
@@ -86,17 +87,17 @@ public class CreateLocalityAndImage extends HttpServlet {
 
 		InputStream inputStream = getInputStream(request);
 
-
 		if(inputStream == null || origin.equals("") ||shooting_date.equals("") || resolution.equals("") || origin == null || shooting_date == null || resolution== null  ) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);	
-			System.out.println("Errore nell' inserimento immagine  ");
+			
+			response.sendRedirect(request.getContextPath() +"/showDetailsCampaign?campaignid=" + c);
+			System.out.println("Errore nell' inserimento immagine");
 			campaignService.close();
 			return;
 		}
 		
 		java.awt.Image image = getImageFromIS(inputStream);
 		if(image == null) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() +"/showDetailsCampaign?campaignid=" + c);
 			System.out.println("Errore nella conversione InputStream -immagine ");
 			return;
 		}
@@ -110,11 +111,12 @@ public class CreateLocalityAndImage extends HttpServlet {
 
 
 		}else {
+			int localityId = u.convertToInteger(locality);
 			local = campaignService.findLocalityById(localityId );
-
+			number = number + campaignService.countImageByLocality(localityId);
 		}
 
-		String path  = "C:\\eclipse-workspace\\progetto-discariche-version1\\WebContent\\images\\"+local.getName()+".jpg";
+		String path  = "C:\\eclipse-workspace\\progetto-discariche-version1\\WebContent\\images\\"+local.getName()+ number+".jpg";
 		saveImage(path , image);
 
 		Image img =new Image(0, path, resolution, date, origin, local.getId());
@@ -124,7 +126,7 @@ public class CreateLocalityAndImage extends HttpServlet {
 
 	}
 
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doPost(request, response);
