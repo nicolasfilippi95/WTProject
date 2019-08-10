@@ -15,10 +15,6 @@ public class UserService extends GenericService {
 	public void registerUser(User user) {
 
 
-		if(user.getRole() == true) {
-			user.setExperience(null);
-			user.setPhoto(null);
-		}
 		UserDAO userDAO = new UserDAO(connection);
 		userDAO.add(user);
 		commit();

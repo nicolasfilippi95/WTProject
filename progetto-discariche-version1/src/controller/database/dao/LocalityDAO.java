@@ -13,6 +13,9 @@ import model.beans.Locality;
 import model.beans.User;
 
 public class LocalityDAO extends GenericDAO {
+	
+	
+	
 	public Locality findLocalityById(int id) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -41,6 +44,36 @@ public class LocalityDAO extends GenericDAO {
 			}
 		}
 		return locality;
+	}
+	
+	public int countLocalityByCampaign(int campaignId) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null; 
+		int count =0;
+		try {
+			preparedStatement =connection.prepareStatement("SELECT COUNT(*) AS tot FROM locality WHERE campaignId=?");
+			preparedStatement.setInt(1, campaignId);
+			resultSet =preparedStatement.executeQuery();
+			while(resultSet.next()) {
+			count = resultSet.getInt("tot");
+			}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if (resultSet != null) {
+						resultSet.close();
+					}
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		return count;
+		
 	}
 
 	public ArrayList<Locality> findAllLocalityByCampaign(int campaignId){

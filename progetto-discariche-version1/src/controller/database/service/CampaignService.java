@@ -98,10 +98,24 @@ public class CampaignService extends GenericService{
 		return imageDAO.countImageByLocality(locId);
 	}
 	
+	public void updateCampaign(Campaign campaign) {
+		CampaignDAO campaignDAO =new CampaignDAO(connection);
+		campaignDAO.update(campaign);
+		commit();
+	}
+	
+	public int countLocalityByCampaign(int campaignId) {
+		LocalityDAO localityDAO = new LocalityDAO(connection);
+		return localityDAO.countLocalityByCampaign(campaignId);
+	}
+	
+	
+	
 	public Note findNoteById(int imageId) {
 		NoteDAO noteDAO = new NoteDAO(connection);
 		return noteDAO. findNoteById(imageId);
 		}
+	
 	
 
 

@@ -33,7 +33,18 @@
     <servlet-name>CreateLocalityAndImage</servlet-name>
     <servlet-class>controller.servlet.CreateLocalityAndImage</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>StartCampaign</servlet-name>
+    <servlet-class>controller.servlet.StartCampaign</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CloseCampaign</servlet-name>
+    <servlet-class>controller.servlet.CloseCampaign</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowStatistics</servlet-name>
+    <servlet-class>controller.servlet.ShowStatistics</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/register</url-pattern>
@@ -67,7 +78,18 @@
     <servlet-name>CreateLocalityAndImage</servlet-name>
     <url-pattern>/createLocalityAndImage</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>StartCampaign</servlet-name>
+    <url-pattern>/startCampaign</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CloseCampaign</servlet-name>
+    <url-pattern>/closeCampaign</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowStatistics</servlet-name>
+    <url-pattern>/showStatistics</url-pattern>
+  </servlet-mapping>
   <resource-ref>
     <description>DB Connection</description>
     <res-ref-name>jdbc/DataSource</res-ref-name>

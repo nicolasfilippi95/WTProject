@@ -109,11 +109,13 @@ public class UserDAO extends GenericDAO {
  public void update(User user) {
 	 PreparedStatement preparedStatement = null;
 	 try {
-		 preparedStatement = connection.prepareStatement("UPDATE user SET name = ?, email = ?, password = ?  WHERE id = ?");
+		 preparedStatement = connection.prepareStatement("UPDATE user SET name = ?, email = ?, password = ?, experience =?, photo =?  WHERE id = ?");
 	 preparedStatement.setString(1, user.getName());
 	 preparedStatement.setString(2, user.getEmail());
 	 preparedStatement.setString(3, user.getPassword());
-	 preparedStatement.setInt(4, user.getId());
+	 preparedStatement.setString(4, user.getExperience());
+	 preparedStatement.setString(5, user.getPhoto());
+	 preparedStatement.setInt(6, user.getId());
 	 preparedStatement.executeUpdate();
 	 
 	 }catch(SQLException e) {

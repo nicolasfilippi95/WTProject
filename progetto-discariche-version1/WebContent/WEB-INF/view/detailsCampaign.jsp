@@ -23,10 +23,9 @@
 			<c:out value="${Campaign.customer}" />
 		<br> Status:
 			<c:out value="${Campaign.status}" />
-		<br> Località associate alla campagna:<br>
+		<br> Località associate alla campagna:<br> 
 		<c:if test="${empty requestScope.ListLocality}">
 		Non sono ancora state inserite Localita'.<br>
-
 		</c:if>
 		<c:if test="${not empty requestScope.ListLocality}">
 
@@ -44,7 +43,7 @@
 
 					<c:if test="${element.id == el.localityId}">
 						
-							<td><img src="${el.picture}" width="45" height="45" />  </td>
+							<td><img src="${el.picture}" width="50" height="50" />  </td>
 
 						
 
@@ -52,7 +51,7 @@
 				</c:forEach>
 			</c:forEach>
 		</c:if>
-
+<c:if test="${Campaign.status == 'CREATED'  }">
 		<form method="post" enctype="multipart/form-data"
 			action="createLocalityAndImage" id="wiz">
 			<input type="hidden" name="campaignid"
@@ -107,7 +106,19 @@
 
 		<script type="text/javascript" src="js/wizard.js"></script>
 	</c:if>
+	</c:if>
+	<form  action="startCampaign" method="POST">
+							<input type="hidden" name="campaignid"
+								value="<c:out value = "${Campaign.id}"/>" /> <input
+								type="submit" value="Avvia campagna" />
+						</form>
+							<form  action="closeCampaign" method="POST">
+							<input type="hidden" name="campaignid"
+								value="<c:out value = "${Campaign.id}"/>" /> <input
+								type="submit" value="Chiudi campagna" />
+						</form>
 	<a href="modifyProfile">Modify Profile</a>
+	<a name="campaignid" href='showStatistics?campaignid=<c:out value ="${Campaign.id}" />'>visualize statistics</a>
 	<a href="showHome">Back to home </a>
 </body>
 </html>
