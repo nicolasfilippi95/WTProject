@@ -1,7 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,22 +49,26 @@
 		<p>Campagne avviate e per cui non hai ancora optato:</p>
 		<br>
 		<br>
-		<table>
-			<c:forEach var="element" items="${requestScope.CampaignAvailable}">
-				<tr>
-					<td><c:out value="${element.name}" /></td>
-					<td><c:out value="${element.customer}" /></td>
-					<td><c:out value="${element.status}" /></td>
-				</tr>
+		<form method ="post" action="joinToCampaign">
+			<table>
+				<c:forEach var="element" items="${requestScope.CampaignAvailable}">
+					<tr>
+						<td><input type="radio" name="campaignid"
+							value="<c:out value = '${element.id}'/>" />&nbsp;&nbsp;${element.name}</td>
+						<td><c:out value="${element.customer}" /></td>
+						<td><c:out value="${element.status}" /></td>
+					</tr>
 
-			</c:forEach>
-		</table>
+				</c:forEach>
+			</table>
+			<button>Iscriviti</button>
+		</form>
 		<p>Campagne avviate e per cui hai optato:</p>
 		<br>
 		<table>
 			<c:forEach var="element" items="${requestScope.CampaignChoosen}">
 				<tr>
-					<td><c:out value="${element.name}" /></td>
+					<td ><a href="showMap?campaignid=<c:out value = "${element.id}"/>">${element.name}</a></td>
 					<td><c:out value="${element.customer}" /></td>
 					<td><c:out value="${element.status}" /></td>
 				</tr>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.database.service.CampaignService;
+import model.beans.Campaign;
 import model.beans.User;
 import utilities.Utility;
 
@@ -21,12 +23,30 @@ public class ShowMap extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("User");
 		Utility u = new Utility();
-		Integer campaignID = u.convertToInteger(request.getParameter("campaignid"));
+		Integer campaignId = u.convertToInteger(request.getParameter("campaignid"));
 
 		// if wrong data redirect to home
-		if (campaignID == null) {
+		if (campaignId == null) {
 			response.sendRedirect(request.getContextPath() + "/showHome");
+			return;
 		}
+		
+		CampaignService campaignService = new CampaignService();
+		Campaign campaign =  campaignService.findcampaignById(campaignId);
+		campaignService.close();
+
+		if (campaign== null  ) {
+			response.sendRedirect(request.getContextPath() + "/showHome");
+			return;
+			
+		}
+		
+		
+		
+
+		request.getServletContext().getRequestDispatcher("/WEB-INF/view/map.jsp?campaignid=" + campaignId.toString()).forward(request, response);
+		return;
+		
 
 	}
 

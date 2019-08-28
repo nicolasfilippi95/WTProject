@@ -45,6 +45,30 @@
     <servlet-name>ShowStatistics</servlet-name>
     <servlet-class>controller.servlet.ShowStatistics</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ShowMap</servlet-name>
+    <servlet-class>controller.servlet.ShowMap</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>JoinToCampaign</servlet-name>
+    <servlet-class>controller.servlet.JoinToCampaign</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ConvertToJson</servlet-name>
+    <servlet-class>controller.servlet.ConvertToJson</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ShowDetailsLocality</servlet-name>
+    <servlet-class>controller.servlet.ShowDetailsLocality</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreateNote</servlet-name>
+    <servlet-class>controller.servlet.CreateNote</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>ShowDetailsImage</servlet-name>
+    <servlet-class>controller.servlet.ShowDetailsImage</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/register</url-pattern>
@@ -89,6 +113,30 @@
   <servlet-mapping>
     <servlet-name>ShowStatistics</servlet-name>
     <url-pattern>/showStatistics</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowMap</servlet-name>
+    <url-pattern>/showMap</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>JoinToCampaign</servlet-name>
+    <url-pattern>/joinToCampaign</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ConvertToJson</servlet-name>
+    <url-pattern>/convertToJson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowDetailsLocality</servlet-name>
+    <url-pattern>/showDetailsLocality</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateNote</servlet-name>
+    <url-pattern>/createNote</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowDetailsImage</servlet-name>
+    <url-pattern>/showDetailsImage</url-pattern>
   </servlet-mapping>
   <resource-ref>
     <description>DB Connection</description>

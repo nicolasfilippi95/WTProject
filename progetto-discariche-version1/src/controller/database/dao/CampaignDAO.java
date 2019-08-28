@@ -193,4 +193,26 @@ public class CampaignDAO extends GenericDAO{
 				}
 		}
 	}
+	
+	
+	public void join(int workerId, int campaignId) {
+		PreparedStatement preparedStatement = null;
+		try {
+			preparedStatement = connection
+					.prepareStatement("INSERT INTO user_campaign (userid, campaignid) VALUES (?, ?)");
+			preparedStatement.setInt(1, workerId);
+			preparedStatement.setInt(2, campaignId);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

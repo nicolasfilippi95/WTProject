@@ -118,11 +118,12 @@ public class CreateLocalityAndImage extends HttpServlet {
 
 		String path  = "C:\\eclipse-workspace\\progetto-discariche-version1\\WebContent\\images\\"+local.getName()+ number+".jpg";
 		saveImage(path , image);
-
-		Image img =new Image(0, path, resolution, date, origin, local.getId());
+String pathDB = "images\\"+local.getName()+ number+".jpg";
+		Image img =new Image(0, pathDB, resolution, date, origin, local.getId());
 		campaignService.addImage(img);
-
+		
 		response.sendRedirect(request.getContextPath() + "/showDetailsCampaign?campaignid=" + c);
+		return;
 
 	}
 

@@ -18,10 +18,19 @@ Il numero di immagini della campagna corrente è: <c:out value="${requestScope.nu
 <br>
 Il numero medio di immagini per località: <c:out value="${requestScope.averageNumberImage}"></c:out>
 <br>
+Il numero medio di note per immagine : <c:out value="${requestScope.averageNumberNote}"></c:out>
+<br>
+Il numero di conflitti e' : <c:out value="${requestScope.numberConflict}"> </c:out>
+<br>
+Le immagini con conflitti sono : 
+<br>
+<c:forEach var ="e" items="${requestScope.listImageConflict}">
+<a href= "showDetailsImage?imageid=<c:out value="${e.id}"/>" ><img src="${e.picture}"  width="50" height="50" /></a>
+
+</c:forEach>
 <a href="modifyProfile">Modify Profile</a>
 </c:if>
 </c:if>
-
 
 </body>
 </html>

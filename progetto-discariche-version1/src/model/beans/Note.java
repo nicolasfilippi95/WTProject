@@ -42,7 +42,7 @@ public class Note {
 	}
 
 
-	public boolean isValidity() {
+	public boolean getValidity() {
 		return validity;
 	}
 

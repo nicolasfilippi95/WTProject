@@ -26,7 +26,7 @@ public class ShowHome extends HttpServlet {
 		
 		
 		CampaignService campaignService = new CampaignService();
-		if(user.getRole()== true) {   // means that it is a manager
+		if(user.getRole() == true) {   // means that it is a manager
 		ArrayList<Campaign> campaigns = campaignService.findAllCampaignbyManagerID(user.getId());
 		request.setAttribute("ListCampaign", campaigns);
 

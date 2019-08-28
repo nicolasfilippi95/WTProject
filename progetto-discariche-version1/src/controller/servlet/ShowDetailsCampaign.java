@@ -23,6 +23,7 @@ public class ShowDetailsCampaign extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		User user= (User) session.getAttribute("User");
 
@@ -52,7 +53,9 @@ public class ShowDetailsCampaign extends HttpServlet {
 			}
 			request.setAttribute("ListImage", ListImage);
 			campaignService.close();
+	
 			request.getServletContext().getRequestDispatcher("/WEB-INF/view/detailsCampaign.jsp").forward(request, response);
+			
 			return;
 		}  
 
